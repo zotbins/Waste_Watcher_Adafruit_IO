@@ -5,6 +5,11 @@
 #include "soc/rtc_cntl_reg.h"  // Disable brownout problems
 #include "driver/rtc_io.h"
 
+#include <WiFi.h>
+
+#include "Adafruit_MQTT.h"
+#include "Adafruit_MQTT_Client.h"
+
 // create a `config.h` file based off of `template-config.h`
 #include "config.h"
 
@@ -34,6 +39,10 @@ float distanceRead(
   return distance;
 }
 
+// Depends on: "distanceRead" function.
+// Gets the distance reading from the ultrasonic sensor 
+// and returns the fullness values using the equation
+// "fullness = binHeight - fullness"
 int calculateFullness(
   int ultrasonicTrigPin = 13,
   int ultrasonicEchoPin = 12,
@@ -52,7 +61,7 @@ int calculateFullness(
       }
 
       // Filter out of range values
-      if (distance<minValue || distance>maxValue) {
+      if (distance<=minValue || distance>maxValue) {
         distance = -1;
       }
       else {
@@ -66,25 +75,45 @@ int calculateFullness(
 
 void setup() {
   if (debug) Serial.begin(115200);
+
+  // ---- Adafruit MQTT ---- 
+  AdafruitIO_Feed *fullness_feed = io.feed(FEEDNAME);
+
+  if (debug)  Serial.print("Connecting to Adafruit IO");
+  io.connect();
+
+  while(io.status() < AIO_CONNECTED) {
+     if (debug) Serial.print(".");
+    delay(500);
+  }
+
+  if (debug) {
+    Serial.println();
+    Serial.println(io.statusText());
+  }
   
-  // ultrasonic
+  // ---- ultrasonic -----
   pinMode(ultrasonicTrigPin, OUTPUT);
   pinMode(ultrasonicEchoPin, INPUT);
 
-  // telemetry variables
+  // ---- telemetry variables ----
   int fullness;
 
-  // TODO: Read Fullness
+  // ---- Read Fullness ----
   if (debug) Serial.println("\nReading fullness...");
   fullness = calculateFullness(ultrasonicTrigPin, ultrasonicEchoPin, binHeight, 0, binHeight, retries);
   if (debug) Serial.println(fullness);
+  
   // TODO: Get Picture
 
-  // TODO: Send Fullness Telemetry
+  // ----- Send Telemetry -----
+  io.run();
+  fullness_feed->save(fullness);
+  if (debug) Serial.println("Fullness Telemetry Sent");
 
   // TODO: Send Picture to MQTT
 
-  // deep sleep
+  // ---- deep sleep ----
   if (debug) Serial.println("Going to sleep now");
   delay(1000);
   if (debug) Serial.flush();
