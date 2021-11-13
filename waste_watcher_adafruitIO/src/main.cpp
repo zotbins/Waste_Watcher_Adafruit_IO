@@ -10,68 +10,10 @@
 #include "Adafruit_MQTT.h"
 #include "Adafruit_MQTT_Client.h"
 
+#include "Fullness.h"
+
 // create a `config.h` file based off of `template-config.h`
 #include "config.h"
-
-// Read the distance measurement from the ultrasonic sensor.
-// This distance is used to calculate the bin fullness w/ the 
-// equation "fullness = binHeight - fullness"
-float distanceRead(
-  int ultrasonicTrigPin = 13,
-  int ultrasonicEchoPin = 12
-) {
-  // === collect ultrasonic readings ===
-  long duration; // units: microseconds, for HC-SR04
-  float distance; // units:cm, for HC-SR04
-
-  // clear trigger pin
-  digitalWrite(ultrasonicTrigPin, LOW);
-
-  // Toggle trigPin HIGH then LOW
-  digitalWrite(ultrasonicTrigPin, HIGH);
-  delayMicroseconds(10); //units: us
-  digitalWrite(ultrasonicTrigPin, LOW);
-
-  // Reads echoPin and returns sound wave travel time
-  duration = pulseIn(ultrasonicEchoPin, HIGH);
-  distance = duration * 0.034 / 2;
-
-  return distance;
-}
-
-// Depends on: "distanceRead" function.
-// Gets the distance reading from the ultrasonic sensor 
-// and returns the fullness values using the equation
-// "fullness = binHeight - fullness"
-int calculateFullness(
-  int ultrasonicTrigPin = 13,
-  int ultrasonicEchoPin = 12,
-  int binHeight = 50, 
-  int minValue = 0,
-  int maxValue = 50,
-  int retries = 5
-) {
-    int distance;
-
-    for (int i=0; i<retries; i++) {
-      distance = (int)distanceRead(ultrasonicTrigPin, ultrasonicEchoPin);
-      if (debug) {
-        Serial.print("Raw Distance: ");
-        Serial.println(distance);
-      }
-
-      // Filter out of range values
-      if (distance<=minValue || distance>maxValue) {
-        distance = -1;
-      }
-      else {
-        return binHeight - distance;
-      }
-    }
-
-    return -1;
-  
-}
 
 void setup() {
   if (debug) Serial.begin(115200);
