@@ -8,7 +8,7 @@
 #include "Adafruit_MQTT.h"
 #include "Adafruit_MQTT_Client.h"
 
-//#include <base64.h>
+#include <base64.h>
 #include "Fullness.h"
 #include "Image.h"
 
@@ -23,7 +23,8 @@ void setup() {
   if (debug) Serial.begin(115200);
 
   // ---- Adafruit MQTT ---- 
-  AdafruitIO_Feed *fullness_feed = io.feed(FEEDNAME);
+  AdafruitIO_Feed *fullnessFeed = io.feed(FULLNESS_FEEDNAME);
+  AdafruitIO_Feed *imageFeed = io.feed(IMAGE_FEEDNAME);
 
   if (debug)  Serial.print("Connecting to Adafruit IO");
   io.connect();
@@ -60,10 +61,13 @@ void setup() {
 
   // ----- Send Telemetry -----
   io.run();
-  fullness_feed->save(fullness);
-  if (debug) Serial.println("Fullness Telemetry Sent");
+  bool isFullnessSaved = fullnessFeed->save(fullness);
+  if (debug && isFullnessSaved) Serial.println("Fullness Telemetry Sent");
 
-  // TODO: Send Picture to MQTT
+  // --- Send Picture to MQTT ----
+  bool isImageSaved = imageFeed->save(base64Image);
+
+  if (debug && isImageSaved) Serial.println("Image Telemetry Sent");
 
   // ---- deep sleep ----
   if (debug) Serial.println("Going to sleep now");
