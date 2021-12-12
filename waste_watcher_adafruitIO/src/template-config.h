@@ -1,23 +1,8 @@
 // Use this as a template to create your own "config.h" file. 
 // "config.h" will remain  untracked by the ".gitignore" file to avoid
 // accidentally tracking any sensitive information.
-
-#ifndef CONFIG
-#define CONFIG
-
-// WiFi
-#define WIFI_SSID     "<YOUR_WIFI_ID_HERE>"
-#define WIFI_PASS     "<YOUR_WIFI_PASSWORD_HERE>"
-
-// Adafruit MQTT
-// ------------
-// 1. Create an Adafruit IO account here https://io.adafruit.com/
-// 2. Get your account username and key
-// 3. Create a feed. Refer to https://learn.adafruit.com/adafruit-io-basics-feeds
-#include "AdafruitIO_WiFi.h"
-#define IO_USERNAME   "<YOUR_ADAFRUIT_IO_USERNAME_HERE>"
-#define IO_KEY        "<YOUR_ADAFRUIT_IO_KEY_HERE>"
-#define FEEDNAME      "<YOUR_ADAFRUIT_IO_FEEDNAME>"
+#ifndef CONFIG_H
+#define CONFIG_H
 
 // ultrasonic sensor pins
 const int ultrasonicTrigPin = 13;
@@ -31,28 +16,22 @@ const int ultrasonicEchoPin = 12;
 const int binHeight = 50; // units: cm, used to calculate fullness
 const int retries = 5; // # of retries for collecting fullness
 
-// camera 
-// === camera pin definitions ===
-const int flashLED = 4;
+// Replace the next variables with your SSID/Password combination
+const char *ssid = "<YOUR_SSID>";
+const char *password = "<YOUR_PASSWORD>";
 
-//CAMERA_MODEL_AI_THINKER
-#define PWDN_GPIO_NUM     32
-#define RESET_GPIO_NUM    -1
-#define XCLK_GPIO_NUM      0
-#define SIOD_GPIO_NUM     26
-#define SIOC_GPIO_NUM     27
-
-#define Y9_GPIO_NUM       35
-#define Y8_GPIO_NUM       34
-#define Y7_GPIO_NUM       39
-#define Y6_GPIO_NUM       36
-#define Y5_GPIO_NUM       21
-#define Y4_GPIO_NUM       19
-#define Y3_GPIO_NUM       18
-#define Y2_GPIO_NUM        5
-#define VSYNC_GPIO_NUM    25
-#define HREF_GPIO_NUM     23
-#define PCLK_GPIO_NUM     22
-
+// Add your MQTT Broker IP address
+// --------------------------------------
+// 1. Create an Adafruit IO account here https://io.adafruit.com/
+// 2. Create a feed. Refer to https://learn.adafruit.com/adafruit-io-basics-feeds
+// 3. Get your account username, key (password), and mqtt topic name
+// 4. Create a unique id using a generator such as https://guidgenerator.com/
+// 5. Replace the following lines with your information from the previous steps
+const char *mqttServer = "io.adafruit.com"; //mqttServer
+const char *mqttClientID = "<YOUR_UNIQUE_ID>"; 
+const char *mqttUsername = "<YOUR_ADAFRUIT_IO_USERNAME>"; // Adafruit Username
+const char *mqttPassword = "<YOUR_ADAFRUIT_IO_PASSWORD>"; // Adafruit AIO Key
+const char *mqttFullnessTopic = "<YOUR_ADAFRUIT_IO_FULLNESS_TOPIC_FEEDNAME";
+const char *mqttImageTopic = "<YOUR_ADAFRUIT_IO_TOPIC_IMAGE_FEEDNAME>";
 
 #endif
