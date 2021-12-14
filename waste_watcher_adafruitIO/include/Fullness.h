@@ -1,5 +1,5 @@
-#ifndef FULLNESS 
-#define FULLNESS
+#ifndef FULLNESS_H
+#define FULLNESS_H
 
 float distanceRead(
   int ultrasonicTrigPin = 13,

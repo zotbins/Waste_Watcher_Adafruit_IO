@@ -3,7 +3,6 @@
 #include "esp_camera.h"
 #include "driver/rtc_io.h"
 #include <base64.h>
-#include "config.h" // create a `config.h` file based off of `template-config.h`
 
 // configure the ESP32 cam. A lot of these parameters are hard-coded
 // you can change these configurations as you see fit to your specifications.
@@ -50,8 +49,7 @@ String takePhoto(bool debug) {
 
   // turn on flash
   rtc_gpio_hold_dis(GPIO_NUM_4);
-  digitalWrite(flashLED,HIGH);
-  delay(500);
+  digitalWrite(FLASH,HIGH);
 
   // take the photo and store in frame buffer (fb)
   camera_fb_t * fb = NULL;
@@ -65,8 +63,7 @@ String takePhoto(bool debug) {
   }
 
   // turn off flash
-  delay(500); 
-  digitalWrite(flashLED,LOW);
+  digitalWrite(FLASH,LOW);
   rtc_gpio_hold_en(GPIO_NUM_4);
 
   String encodedBuffer = base64::encode((uint8_t *)fb->buf, fb->len);
