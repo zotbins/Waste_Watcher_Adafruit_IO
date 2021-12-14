@@ -13,7 +13,6 @@
 // create a `config.h` file based off of `template-config.h`
 #include "config.h"
 
-bool debug = true;
 WiFiClient espClient;
 PubSubClient client(espClient);
 
