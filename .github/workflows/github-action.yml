@@ -17,7 +17,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install platformio
-    - name: Build in seeed_wio_terminal Environment
+    - name: Build in esp32cam Environment
       run: |
         cd waste_watcher_adafruitIO/
         platformio run --environment esp32cam
