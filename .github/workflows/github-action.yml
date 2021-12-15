@@ -20,4 +20,4 @@ jobs:
     - name: Build in seeed_wio_terminal Environment
       run: |
         cd waste_watcher_adafruitIO/
-        platformio run --platformio run --environment esp32cam
+        platformio run --environment esp32cam
