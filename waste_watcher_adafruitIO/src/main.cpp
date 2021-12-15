@@ -102,8 +102,8 @@ void setup() {
   fullness = calculateFullness(ultrasonicTrigPin, ultrasonicEchoPin, binHeight, 0, binHeight, retries);
   
   // ---- Get Picture ----
-  configInitCamera(debug);
-  base64Image = takePhoto(debug);
+  configInitCamera();
+  base64Image = takePhoto();
 
   #ifndef NDEBUG
   Serial.print("\nFullness: ");
@@ -125,7 +125,7 @@ void setup() {
   if (imageSent) Serial.println("Image Telemetry Sent");
   Serial.println("Going to sleep now");
   delay(1000);
-  if (debug) Serial.flush();
+  Serial.flush();
   #endif
 
   esp_deep_sleep_start();
