@@ -20,4 +20,4 @@ jobs:
     - name: Build in esp32cam Environment
       run: |
         cd waste_watcher_adafruitIO/
-        platformio run --environment esp32cam
+        platformio run --environment ci-test
