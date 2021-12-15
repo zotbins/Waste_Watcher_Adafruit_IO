@@ -23,7 +23,7 @@
 #define HREF_GPIO_NUM     23
 #define PCLK_GPIO_NUM     22
 
-void configInitCamera(bool debug);
-String takePhoto(bool debug);
+void configInitCamera();
+String takePhoto();
 
 #endif
