@@ -6,7 +6,7 @@
 
 // configure the ESP32 cam. A lot of these parameters are hard-coded
 // you can change these configurations as you see fit to your specifications.
-void configInitCamera(bool debug){
+void configInitCamera(){
   camera_config_t config;
   config.ledc_channel = LEDC_CHANNEL_0;
   config.ledc_timer = LEDC_TIMER_0;
@@ -35,14 +35,16 @@ void configInitCamera(bool debug){
   // Initialize the Camera
   esp_err_t err = esp_camera_init(&config);
   if (err != ESP_OK) {
-    if (debug) Serial.printf("Camera init failed with error 0x%x", err);
+    #ifndef NDEBUG
+    Serial.printf("Camera init failed with error 0x%x", err);
+    #endif
     return;
   }
 }
 
 // Use the ESP32 Cam to take a photo. The output will be a base64 
 // string that can be sent to AdafruitIO using MQTT.
-String takePhoto(bool debug) {
+String takePhoto() {
   // function parameters
   String getAll;
   String getBody;
@@ -57,7 +59,9 @@ String takePhoto(bool debug) {
 
   // start if camera capture fails 
   if(!fb) {
-    if (debug) Serial.println("Camera capture failed");
+    #ifndef NDEBUG
+    Serial.println("Camera capture failed");
+    #endif
     delay(1000);
     ESP.restart();
   }
