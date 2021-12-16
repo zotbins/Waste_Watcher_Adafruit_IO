@@ -11,7 +11,11 @@
 #include "Image.h"
 
 // create a `config.h` file based off of `template-config.h`
+#ifdef CI
+#include "ci-config.h"
+#else
 #include "config.h"
+#endif
 
 WiFiClient espClient;
 PubSubClient client(espClient);
