@@ -29,7 +29,7 @@ void configInitCamera(){
   config.xclk_freq_hz = 20000000;
   config.pixel_format = PIXFORMAT_JPEG;
   config.frame_size = FRAMESIZE_SVGA; //800 x 600 necessary for Adafruit IO
-  config.jpeg_quality = 30;
+  config.jpeg_quality = 25;
   config.fb_count = 1;
 
   // Initialize the Camera

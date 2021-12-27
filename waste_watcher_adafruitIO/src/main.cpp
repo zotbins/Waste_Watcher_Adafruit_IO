@@ -86,6 +86,9 @@ void setup() {
   Serial.begin(115200);
   #endif
 
+  // === deep sleep setup ===
+  esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * uS_TO_S_FACTOR);
+
   setup_wifi();
   client.setServer(mqttServer, 1883);
   if (!client.connected()) {
