@@ -2,6 +2,8 @@
 
 Waste Watcher is an IoT based sensor module to help keep track of waste data metrics with real-time bin fullness data and waste images. This is intended to help quantify and promote actionable solutions to reduce waste. This project is a continuation of [waste_watcher](https://github.com/zotbins/waste_watcher).
 
+![](./imgs/waste_watcher.jpg)
+
 ## Features
 
 - 🗑 Collect waste bin fullness telemetry
