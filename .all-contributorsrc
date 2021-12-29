@@ -1,0 +1,25 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "patrickanguyen",
+      "name": "Patrick Nguyen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/41417417?v=4",
+      "profile": "https://github.com/patrickanguyen",
+      "contributions": [
+        "code",
+        "review"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "Waste_Watcher_Adafruit_IO",
+  "projectOwner": "zotbins",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
