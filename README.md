@@ -37,7 +37,25 @@ Besides just collecting data, here are some ideas that you can implement. Again 
     - identify frequently thrown away items then try to reduce that waste (eg. plastic straws are identified frequently in the waste stream, so we can ban the straw or give sustainable alternatives)
     - identify which waste items are incorrectly thrown away
 
-## Contributors
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/patrickanguyen"><img src="https://avatars.githubusercontent.com/u/41417417?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Patrick Nguyen</b></sub></a><br /><a href="https://github.com/zotbins/Waste_Watcher_Adafruit_IO/commits?author=patrickanguyen" title="Code">💻</a> <a href="https://github.com/zotbins/Waste_Watcher_Adafruit_IO/pulls?q=is%3Apr+reviewed-by%3Apatrickanguyen" title="Reviewed Pull Requests">👀</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
 ## Credits/Acknowledgements
 
