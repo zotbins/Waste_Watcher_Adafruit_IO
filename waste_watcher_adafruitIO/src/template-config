@@ -31,7 +31,7 @@ const char *mqttServer = "io.adafruit.com"; //mqttServer
 const char *mqttClientID = "<YOUR_UNIQUE_ID>"; 
 const char *mqttUsername = "<YOUR_ADAFRUIT_IO_USERNAME>"; // Adafruit Username
 const char *mqttPassword = "<YOUR_ADAFRUIT_IO_PASSWORD>"; // Adafruit AIO Key
-const char *mqttFullnessTopic = "<YOUR_ADAFRUIT_IO_FULLNESS_TOPIC_FEEDNAME";
+const char *mqttFullnessTopic = "<YOUR_ADAFRUIT_IO_FULLNESS_TOPIC_FEEDNAME>";
 const char *mqttImageTopic = "<YOUR_ADAFRUIT_IO_TOPIC_IMAGE_FEEDNAME>";
 
 #endif
