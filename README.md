@@ -1,4 +1,7 @@
 # Waste Watcher Adafruit IO
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Waste Watcher is an IoT based sensor module to help keep track of waste data metrics with real-time bin fullness data and waste images. This is intended to help quantify and promote actionable solutions to reduce waste. This project is a continuation of [waste_watcher](https://github.com/zotbins/waste_watcher).
 
@@ -42,20 +45,18 @@ Besides just collecting data, here are some ideas that you can implement. Again 
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
   <tr>
+    <td align="center"><a href="http://www.ics.uci.edu/~primal/"><img src="https://avatars.githubusercontent.com/u/284107?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Primal Pappachan</b></sub></a><br /><a href="https://github.com/zotbins/Waste_Watcher_Adafruit_IO/pulls?q=is%3Apr+reviewed-by%3Aprimalpop" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://github.com/patrickanguyen"><img src="https://avatars.githubusercontent.com/u/41417417?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Patrick Nguyen</b></sub></a><br /><a href="https://github.com/zotbins/Waste_Watcher_Adafruit_IO/commits?author=patrickanguyen" title="Code">💻</a> <a href="https://github.com/zotbins/Waste_Watcher_Adafruit_IO/pulls?q=is%3Apr+reviewed-by%3Apatrickanguyen" title="Reviewed Pull Requests">👀</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
