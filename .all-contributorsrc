@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "primalpop",
+      "name": "Primal Pappachan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/284107?v=4",
+      "profile": "http://www.ics.uci.edu/~primal/",
+      "contributions": [
+        "review"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "Waste_Watcher_Adafruit_IO",
+  "projectOwner": "zotbins",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
