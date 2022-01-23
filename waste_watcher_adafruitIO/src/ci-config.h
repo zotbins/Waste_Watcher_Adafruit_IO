@@ -1,4 +1,4 @@
-// Use this as a template to create your own "config.h" file. 
+// Use this as a template to create your own "config.h" file.
 // "config.h" will remain  untracked by the ".gitignore" file to avoid
 // accidentally tracking any sensitive information.
 #ifndef CONFIG_H
@@ -7,6 +7,9 @@
 // ultrasonic sensor pins
 const int ultrasonicTrigPin = 13;
 const int ultrasonicEchoPin = 12;
+
+// camera settings
+bool flashOn = true;
 
 // deep sleep
 #define uS_TO_S_FACTOR 1000000 //conversion factor for usec to sec
@@ -28,7 +31,7 @@ const char *password = "dummy";
 // 4. Create a unique id using a generator such as https://guidgenerator.com/
 // 5. Replace the following lines with your information from the previous steps
 const char *mqttServer = "io.adafruit.com"; //mqttServer
-const char *mqttClientID = "dummy"; 
+const char *mqttClientID = "dummy";
 const char *mqttUsername = "dummy"; // Adafruit Username
 const char *mqttPassword = "dummy"; // Adafruit AIO Key
 const char *mqttFullnessTopic = "dummy";
