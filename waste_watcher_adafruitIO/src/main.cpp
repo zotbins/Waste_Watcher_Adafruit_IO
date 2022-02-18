@@ -89,13 +89,6 @@ void setup() {
   // === deep sleep setup ===
   esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * uS_TO_S_FACTOR);
 
-  setup_wifi();
-  client.setServer(mqttServer, 1883);
-  if (!client.connected()) {
-    reconnect();
-  }
-  client.loop();
-
   // ---- set pins -----
   pinMode(ultrasonicTrigPin, OUTPUT);
   pinMode(ultrasonicEchoPin, INPUT);
@@ -121,6 +114,14 @@ void setup() {
     return;
   }
   #endif
+
+  // ---- MQTT Setup -----
+  setup_wifi();
+  client.setServer(mqttServer, 1883);
+  if (!client.connected()) {
+    reconnect();
+  }
+  client.loop();
 
   // ----- Send Fullness Telemetry w/ 5 retry chances-----
   char payload[32] = {0};
