@@ -24,6 +24,6 @@
 #define PCLK_GPIO_NUM     22
 
 void configInitCamera();
-String takePhoto();
+String takePhoto(bool flashOn);
 
 #endif

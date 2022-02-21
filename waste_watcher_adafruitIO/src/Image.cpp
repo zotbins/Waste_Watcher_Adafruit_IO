@@ -29,7 +29,7 @@ void configInitCamera(){
   config.xclk_freq_hz = 20000000;
   config.pixel_format = PIXFORMAT_JPEG;
   config.frame_size = FRAMESIZE_SVGA; //800 x 600 necessary for Adafruit IO
-  config.jpeg_quality = 25;
+  config.jpeg_quality = 20;
   config.fb_count = 1;
 
   // Initialize the Camera
@@ -42,22 +42,25 @@ void configInitCamera(){
   }
 }
 
-// Use the ESP32 Cam to take a photo. The output will be a base64 
+// Use the ESP32 Cam to take a photo. The output will be a base64
 // string that can be sent to AdafruitIO using MQTT.
-String takePhoto() {
+String takePhoto(bool flashOn) {
   // function parameters
   String getAll;
   String getBody;
 
-  // turn on flash
-  rtc_gpio_hold_dis(GPIO_NUM_4);
-  digitalWrite(FLASH,HIGH);
+  if (flashOn) {
+    // turn on flash
+    rtc_gpio_hold_dis(GPIO_NUM_4);
+    digitalWrite(FLASH,HIGH);
+  }
+
 
   // take the photo and store in frame buffer (fb)
   camera_fb_t * fb = NULL;
   fb = esp_camera_fb_get();
 
-  // start if camera capture fails 
+  // start if camera capture fails
   if(!fb) {
     #ifndef NDEBUG
     Serial.println("Camera capture failed");
@@ -71,6 +74,6 @@ String takePhoto() {
   rtc_gpio_hold_en(GPIO_NUM_4);
 
   String encodedBuffer = base64::encode((uint8_t *)fb->buf, fb->len);
-  
+
   return encodedBuffer;
 }

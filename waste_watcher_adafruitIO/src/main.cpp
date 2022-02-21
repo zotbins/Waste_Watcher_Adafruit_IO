@@ -74,7 +74,7 @@ void reconnect() {
       Serial.print(client.state());
       Serial.println(" try again in 5 seconds");
       #endif
-      
+
       // Wait 5 seconds before retrying
       delay(5000);
     }
@@ -89,13 +89,6 @@ void setup() {
   // === deep sleep setup ===
   esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * uS_TO_S_FACTOR);
 
-  setup_wifi();
-  client.setServer(mqttServer, 1883);
-  if (!client.connected()) {
-    reconnect();
-  }
-  client.loop();
-
   // ---- set pins -----
   pinMode(ultrasonicTrigPin, OUTPUT);
   pinMode(ultrasonicEchoPin, INPUT);
@@ -107,29 +100,53 @@ void setup() {
 
   // ---- Read Fullness ----
   fullness = calculateFullness(ultrasonicTrigPin, ultrasonicEchoPin, binHeight, 0, binHeight, retries);
-  
+
   // ---- Get Picture ----
   configInitCamera();
-  base64Image = takePhoto();
+  base64Image = takePhoto(flashOn);
 
   #ifndef NDEBUG
   Serial.print("\nFullness: ");
   Serial.println(fullness);
   Serial.println("Image captured.");
+  if (base64Image.length() > 102400) {
+    Serial.println("Image size too big");
+    return;
+  }
   #endif
-  
-  // ----- Send Fullness Telemetry -----
+
+  // ---- MQTT Setup -----
+  setup_wifi();
+  client.setServer(mqttServer, 1883);
+  if (!client.connected()) {
+    reconnect();
+  }
+  client.loop();
+
+  // ----- Send Fullness Telemetry w/ 5 retry chances-----
   char payload[32] = {0};
   snprintf(payload, sizeof(payload), "%d", fullness);
-  bool fullnesSent = client.publish(mqttFullnessTopic, payload);
 
-  // --- Send Picture to MQTT ----
-  bool imageSent = client.publish(mqttImageTopic, base64Image.c_str());
+  bool fullnessSent;
+  for (int i; i<5; i++) {
+    fullnessSent = client.publish(mqttFullnessTopic, payload);
+    if (fullnessSent) break;
+    delay(1000);
+  }
+
+  // --- Send Picture to MQTT w/ 5 retry chances ---
+  bool imageSent;
+  for (int i; i<6; i++) {
+    imageSent = client.publish(mqttImageTopic, base64Image.c_str());
+    if (imageSent) break;
+    delay(1000);
+  }
 
   // ---- deep sleep ----
   #ifndef NDEBUG
-  if (fullnesSent) Serial.println("Fullness Telemetry Sent");
+  if (fullnessSent) Serial.println("Fullness Telemetry Sent");
   if (imageSent) Serial.println("Image Telemetry Sent");
+
   Serial.println("Going to sleep now");
   delay(1000);
   Serial.flush();
