@@ -128,7 +128,7 @@ void setup() {
   snprintf(payload, sizeof(payload), "%d", fullness);
 
   bool fullnessSent;
-  for (int i; i<5; i++) {
+  for (int i=0; i<5; i++) {
     fullnessSent = client.publish(mqttFullnessTopic, payload);
     if (fullnessSent) break;
     delay(1000);
@@ -136,7 +136,7 @@ void setup() {
 
   // --- Send Picture to MQTT w/ 5 retry chances ---
   bool imageSent;
-  for (int i; i<6; i++) {
+  for (int i=0; i<6; i++) {
     imageSent = client.publish(mqttImageTopic, base64Image.c_str());
     if (imageSent) break;
     delay(1000);
